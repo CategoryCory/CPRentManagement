@@ -23,4 +23,9 @@
     .active-navlink {
         @apply flex gap-2 items-center px-3 py-3 block text-gray-100 rounded-lg bg-gray-600;
     }
+
+    input[type="text"],
+    input[type="password"] {
+        @apply border-gray-400 rounded transition duration-150 focus:outline-none focus:border-indigo-600;
+    }
 }
