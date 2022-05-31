@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'theme',
     'accounts',
     'pages',
+    'companies',
 ]
 
 MIDDLEWARE = [

@@ -4,7 +4,7 @@
 
 @layer base {
     html {
-        @apply h-full bg-gray-100;
+        @apply h-full;
     }
 
     body {
@@ -13,19 +13,48 @@
     }
 
     h1, h2, h3, h4 {
-        @apply font-bold;
+        @apply font-bold text-gray-700;
     }
 
     .navlink {
-        @apply flex gap-2 items-center px-3 py-3 block text-gray-100 rounded-lg hover:bg-gray-700 transition-colors duration-150;
+        @apply flex gap-2 items-center px-3 py-3 text-gray-100 rounded-lg hover:bg-gray-700 transition-colors duration-150;
     }
 
     .active-navlink {
-        @apply flex gap-2 items-center px-3 py-3 block text-gray-100 rounded-lg bg-gray-600;
+        @apply flex gap-2 items-center px-3 py-3 text-gray-100 rounded-lg bg-gray-600;
+    }
+
+    .form-field-container {
+        @apply grid grid-cols-3
+    }
+
+    .form-field-container label {
+        @apply pr-3 flex justify-end items-center col-span-1;
+    }
+
+    .form-field-container input {
+        @apply col-span-2
     }
 
     input[type="text"],
     input[type="password"] {
-        @apply border-gray-400 rounded transition duration-150 focus:outline-none focus:border-indigo-600;
+        @apply w-full border-gray-400 rounded transition duration-150 focus:outline-none focus:border-indigo-600;
+    }
+
+    .message-container {
+        @apply mb-6 px-3 py-2 flex justify-between items-center rounded border-l-[3px];
+    }
+
+    .message-container-success {
+        @apply bg-emerald-100 text-emerald-700 border-l-emerald-600;
+    }
+
+    .message-container-warning,
+    .message-container-error {
+        @apply bg-red-100 text-red-700 border-l-red-600;
+    }
+
+    .message-container-info {
+        @apply bg-sky-100 text-sky-700 border-l-sky-600;
     }
 }

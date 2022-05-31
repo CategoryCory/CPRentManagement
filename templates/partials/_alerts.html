@@ -1,0 +1,24 @@
+{% if messages %}
+    {% for message in messages %}
+        <div id="alert-message" class="message-container message-container-{{ message.tags }}">
+            <p class="text-inherit">{{ message }}</p>
+            <button
+                id="alert-message-close"
+                role="button"
+                type="button"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+    {% endfor %}
+    <script>
+        const messageContainer = document.getElementById("alert-message");
+        const messageContainerButton = document.getElementById("alert-message-close");
+
+        messageContainerButton.addEventListener("click", e => {
+            messageContainer.classList.add("hidden");
+        });
+    </script>
+{% endif %}
