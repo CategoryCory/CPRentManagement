@@ -15,8 +15,12 @@
             <div class="grid grid-cols-3">
                 <label for="{{ field.id_for_label }}" class="mt-1 col-span-1">{{ field.label }}</label>
                 <div class="col-span-2">
-                    {{ field.errors }}
                     {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <p class="mt-1.5 px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     {% if field.help_text %}
                         <p class="mt-1 text-sm text-gray-500">
                             {{ field.help_text|safe }}
