@@ -22,11 +22,11 @@
             >
                 {% csrf_token %}
                 <div class="mb-4 flex flex-col">
-                    <label for="{{ form.username.auto_id }}">Username</label>
+                    <label for="{{ form.username.id_for_label }}">Username</label>
                     {{ form.username }}
                 </div>
                 <div class="mb-6 flex flex-col">
-                    <label for="{{ form.password.auto_id }}">Password</label>
+                    <label for="{{ form.password.id_for_label }}">Password</label>
                     {{ form.password }}
                 </div>
                 <input type="hidden" name="next" value="{{ next }}">

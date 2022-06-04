@@ -8,8 +8,8 @@
     }
 
     body {
-        @apply h-full font-light text-gray-700;
-        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        @apply h-full text-gray-700;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     h1, h2, h3, h4 {

@@ -48,16 +48,16 @@
                                                 <span class="sr-only">Edit</span>
                                             </th>
                                         {% endif %}
-                                        {% if perms.companies.delete_company %}
+                                        {% comment %} {% if perms.companies.delete_company %}
                                             <th scope="col" class="relative py-3 pl-3 pr-4 sm:pr-6">
                                                 <span class="sr-only">Delete</span>
                                             </th>
-                                        {% endif %}
+                                        {% endif %} {% endcomment %}
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
                                     {% for company in company_list %}
-                                        <tr class="group">
+                                        <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-900 sm:pl-6">
                                                 {{ company.company_name }}
                                             </td>
@@ -71,7 +71,8 @@
                                                 <td class="relative whitespace-nowrap">
                                                     <a 
                                                         href="{% url 'companies:company-edit' company.pk %}"
-                                                        class="hidden text-gray-500 hover:text-indigo-700 group-hover:inline-block"
+                                                        class="p-2 inline-flex text-gray-500 rounded-full hover:bg-indigo-100 
+                                                            hover:text-indigo-700 transition duration-150"
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -79,7 +80,7 @@
                                                         <span class="sr-only">Edit {{ company.company_name }}</span>
                                                     </a>
                                                 </td>
-                                                <td class="relative whitespace-nowrap">
+                                                {% comment %} <td class="relative whitespace-nowrap">
                                                     <a 
                                                         href="{% url 'companies:company-edit' company.pk %}"
                                                         class="hidden text-gray-500 hover:text-red-700 group-hover:inline-block"
@@ -89,7 +90,7 @@
                                                         </svg>
                                                         <span class="sr-only">Delete {{ company.company_name }}</span>
                                                     </a>
-                                                </td>
+                                                </td> {% endcomment %}
                                             {% endif %}
                                         </tr>
                                     {% endfor %}
