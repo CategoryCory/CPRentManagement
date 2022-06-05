@@ -4,6 +4,8 @@ from .models import Company
 
 
 class CompanyForm(ModelForm):
+    template_name = 'forms/form_snippet.html'
+
     class Meta:
         model = Company
         fields = [
