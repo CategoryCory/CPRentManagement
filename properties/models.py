@@ -17,8 +17,8 @@ class Property(models.Model):
         (TOWER, 'Tower'),
     )
 
-    date_built = models.DateField(blank=True, verbose_name='Date Built')
-    key_number = models.IntegerField(blank=True, verbose_name='Key Number')
+    date_built = models.DateField(null=True, blank=True, verbose_name='Date Built')
+    key_number = models.IntegerField(null=True, blank=True, verbose_name='Key Number')
     description = models.CharField(max_length=250, blank=True)
     addr_line_1 = models.CharField(max_length=100, verbose_name='Address Line 1')
     addr_line_2 = models.CharField(max_length=100, blank=True, verbose_name='Address Line 2')

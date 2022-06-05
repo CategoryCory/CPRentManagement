@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if property_list %}
+        {% for property in property_list %}
+            <p>{{ property.description }}</p>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}
