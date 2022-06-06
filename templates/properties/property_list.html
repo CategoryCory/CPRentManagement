@@ -1,9 +1,101 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
-    {% if property_list %}
-        {% for property in property_list %}
-            <p>{{ property.description }}</p>
-        {% endfor %}
-    {% endif %}
+    <div class="max-w-5xl">
+        {% include 'partials/_alerts.html' %}
+        <div class="flex justify-between items-center">
+            <h2 class="text-3xl">Properties</h2>
+            {% if perms.properties.add_property %}
+                <a 
+                    href="{% url 'properties:property-add' %}"
+                    class="px-3 py-2 flex items-center gap-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-150"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Add property
+                </a>
+            {% endif %}
+        </div>
+        {% if property_list %}
+            <div class="mt-8 flex flex-col">
+                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-300">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th
+                                            scope="col"
+                                            class="py-3 pl-4 pr-3 text-left text-xs uppercase tracking-wide text-gray-500 sm:pl-6"
+                                        >
+                                            Property address
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-3 py-3 text-left text-xs uppercase tracking-wide text-gray-500"
+                                        >
+                                            Property type
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-3 py-3 text-left text-xs uppercase tracking-wide text-gray-500"
+                                        >
+                                            Square feet
+                                        </th>
+                                        <th
+                                            scope="col"
+                                            class="px-3 py-3 text-left text-xs uppercase tracking-wide text-gray-500"
+                                        >
+                                            Insurance
+                                        </th>
+                                        {% if perms.companies.change_company %}
+                                            <th scope="col" class="relative py-3 pl-3 pr-4 sm:pr-6">
+                                                <span class="sr-only">Edit</span>
+                                            </th>
+                                        {% endif %}
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 bg-white">
+                                    {% for property in property_list %}
+                                        <tr>
+                                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-900 sm:pl-6">
+                                                {{ property.full_address }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {{ property.get_property_type_display }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {{ property.square_feet }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                ${{ property.insurance|floatformat:'2'|intcomma }}
+                                            </td>
+                                            {% if perms.properties.change_property %}
+                                                <td class="relative whitespace-nowrap">
+                                                    <a 
+                                                        href="{% url 'properties:property-edit' property.pk %}"
+                                                        class="p-2 inline-flex text-gray-500 rounded-full hover:bg-indigo-100 
+                                                            hover:text-indigo-700 transition duration-150"
+                                                    >
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                                        </svg>
+                                                        <span class="sr-only">Edit {{ property.full_address }}</span>
+                                                    </a>
+                                                </td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p>There are no companies listed yet.</p>
+        {% endif %}
+    </div>
 {% endblock content %}

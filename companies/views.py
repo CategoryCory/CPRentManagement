@@ -31,4 +31,4 @@ class CompanyUpdateView(LoginRequiredMixin, PermissionRequiredMixin, SuccessMess
     permission_required = ('companies.change_company', )
     permission_denied_message = 'You do not have sufficient privileges to edit companies.'
     success_url = reverse_lazy('companies:company-list')
-    success_message = 'Company successfully edited.'
+    success_message = 'Company successfully updated.'
