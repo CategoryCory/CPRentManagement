@@ -38,7 +38,7 @@ class Property(models.Model):
     def full_address(self):
         return f'{self.addr_line_1}, {self.addr_city}, {self.addr_state} {self.addr_zip}'
     
-    def __str__(self) -> str:
+    def __str__(self):
         return self.full_address
     
     def get_absolute_url(self):
