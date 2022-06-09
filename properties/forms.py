@@ -13,5 +13,6 @@ class PropertyForm(forms.ModelForm):
             'insurance',
         )
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 3, })
+            'description': forms.Textarea(attrs={'rows': 3, }),
+            'date_built': forms.TextInput(attrs={'type': 'date', })
         }

@@ -27,7 +27,7 @@ class Property(models.Model):
     addr_zip = models.CharField(max_length=20, verbose_name='Zip Code')
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES, default=COMMERCIAL, verbose_name='Property Type')
     square_feet = models.IntegerField(default=0)
-    taxes = models.IntegerField(default=0)
+    taxes = models.DecimalField(max_digits=12, decimal_places=2, default=0.0)
     insurance = models.DecimalField(max_digits=12, decimal_places=2, default=0.0)
     is_deleted = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
