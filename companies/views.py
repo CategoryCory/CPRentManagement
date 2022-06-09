@@ -10,6 +10,7 @@ from .forms import CompanyForm
 class CompanyListView(LoginRequiredMixin, ListView):
     model = Company
     paginate_by: 25
+    queryset = Company.objects.order_by('company_name')
 
 
 class CompanyDetailView(LoginRequiredMixin, DetailView):

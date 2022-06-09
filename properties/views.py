@@ -10,6 +10,7 @@ from .forms import PropertyForm
 class PropertyListView(LoginRequiredMixin, ListView):
     model = Property
     paginate_by = 25
+    queryset = Property.objects.order_by('addr_city', 'addr_state', 'addr_zip', 'addr_line_1')
 
 
 class PropertyDetailView(LoginRequiredMixin, DetailView):
