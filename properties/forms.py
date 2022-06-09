@@ -1,25 +1,17 @@
-from django.forms import ModelForm
+from django import forms
 
 from .models import Property
 
 
-class PropertyForm(ModelForm):
+class PropertyForm(forms.ModelForm):
     template_name = 'forms/form_snippet.html'
 
     class Meta:
         model = Property
-        fields = [
-            'date_built',
-            'key_number',
-            'description',
-            'addr_line_1',
-            'addr_line_2',
-            'addr_city',
-            'addr_state',
-            'addr_zip',
-            'property_type',
-            'square_feet',
-            'taxes',
+        fields = ('addr_line_1', 'addr_line_2', 'addr_city', 'addr_state', 'addr_zip', 'company',
+            'description', 'property_type', 'key_number', 'date_built', 'square_feet', 'taxes',
             'insurance',
-            'company',
-        ]
+        )
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 3, })
+        }

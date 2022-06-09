@@ -19,7 +19,7 @@ class Property(models.Model):
 
     date_built = models.DateField(null=True, blank=True, verbose_name='Date Built')
     key_number = models.IntegerField(null=True, blank=True, verbose_name='Key Number')
-    description = models.CharField(max_length=250, blank=True)
+    description = models.TextField(blank=True, verbose_name='Description/Notes')
     addr_line_1 = models.CharField(max_length=100, verbose_name='Address Line 1')
     addr_line_2 = models.CharField(max_length=100, blank=True, verbose_name='Address Line 2')
     addr_city = models.CharField(max_length=50, verbose_name='City')
