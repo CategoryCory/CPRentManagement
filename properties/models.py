@@ -42,7 +42,7 @@ class Property(models.Model):
         return self.full_address
     
     def get_absolute_url(self):
-        return reverse("model_detail", kwargs={"pk": self.pk})
+        return reverse('properties:property-detail', kwargs={'pk': self.pk})
     
     
     class Meta:
