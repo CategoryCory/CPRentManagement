@@ -18,7 +18,10 @@ class Unit(models.Model):
     rent = models.DecimalField(max_digits=12, decimal_places=2, default=0.0)
     square_feet = models.IntegerField(default=0)
     percentage_of_property = models.FloatField(default=0.0)
-    unit_status = models.TextField(max_length=20, choices=UNIT_AVAILABILITY_CHOICES, default=AVAILABLE, verbose_name='Unit Availability')
+    unit_status = models.TextField(max_length=20,
+                                   choices=UNIT_AVAILABILITY_CHOICES,
+                                   default=AVAILABLE,
+                                   verbose_name='Unit Availability')
     is_deleted = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
