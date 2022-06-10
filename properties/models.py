@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+import datetime
+
 from companies.models import Company
 
 
@@ -33,6 +35,7 @@ class Property(models.Model):
     is_deleted = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
+    deleted_on = models.DateTimeField(null=True, blank=True)
     company = models.ForeignKey(Company, on_delete=models.SET_NULL, null=True, blank=True)
 
     @property
@@ -47,6 +50,19 @@ class Property(models.Model):
             for u in subunits:
                 if u.calculate_tax_and_ins is True:
                     u.save()
+
+        # if is_deleted is checked, save timestamp and update units and tenants
+        if self.is_deleted is True:
+            if self.deleted_on is None:
+                self.deleted_on = datetime.datetime.now()
+
+            prop_units = self.unit_set.all()
+            for u in prop_units:
+                u.parent_property = None
+                u.is_deleted = True
+                u.save()
+        else:
+            self.deleted_on = None
 
         super(Property, self).save(*args, **kwargs)
 

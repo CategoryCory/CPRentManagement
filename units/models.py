@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 from decimal import Decimal
+import datetime
 
 from properties.models import Property
 
@@ -30,6 +31,7 @@ class Unit(models.Model):
     is_deleted = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
     modified_on = models.DateTimeField(auto_now=True)
+    deleted_on = models.DateTimeField(null=True, blank=True)
     parent_property = models.ForeignKey(Property, on_delete=models.SET_NULL, null=True, blank=True)
 
     def save(self, *args, **kwargs):
@@ -50,6 +52,18 @@ class Unit(models.Model):
 
                     if parent_insurance != 0.0:
                         self.unit_insurance = Decimal(parent_insurance) * Decimal(self.percentage_of_property)
+
+        # If is_deleted is checked, save timestamp in deleted_on and set unit as None for all associated tenants
+        if self.is_deleted is True:
+            if self.deleted_on is None:
+                self.deleted_on = datetime.datetime.now()
+
+            unit_tenants = self.tenant_set.all()
+            for t in unit_tenants:
+                t.unit = None
+                t.save()
+        else:
+            self.deleted_on = None
 
         super(Unit, self).save(*args, **kwargs)
 

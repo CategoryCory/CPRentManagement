@@ -11,7 +11,7 @@ class Tenant(models.Model):
     cell_phone = models.CharField(max_length=25, blank=True)
     fax = models.CharField(max_length=25, blank=True)
     email = models.EmailField(max_length=50, blank=True)
-    date_of_birth = models.DateField(blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
     ssn = models.CharField(max_length=20, blank=True)
     company_name = models.CharField(max_length=50, blank=True)
     alternate_company_1 = models.CharField(max_length=50, blank=True, verbose_name='Alternate company name')
