@@ -25,7 +25,8 @@ class Property(models.Model):
     addr_city = models.CharField(max_length=50, verbose_name='City')
     addr_state = models.CharField(max_length=25, verbose_name='State')
     addr_zip = models.CharField(max_length=20, verbose_name='Zip Code')
-    property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES, default=COMMERCIAL, verbose_name='Property Type')
+    property_type = models.CharField(max_length=20, choices=PROPERTY_TYPE_CHOICES, default=COMMERCIAL,
+                                     verbose_name='Property Type')
     square_feet = models.IntegerField(default=0)
     taxes = models.DecimalField(max_digits=12, decimal_places=2, default=0.0)
     insurance = models.DecimalField(max_digits=12, decimal_places=2, default=0.0)
@@ -37,13 +38,23 @@ class Property(models.Model):
     @property
     def full_address(self):
         return f'{self.addr_line_1}, {self.addr_city}, {self.addr_state} {self.addr_zip}'
-    
+
+    def save(self, *args, **kwargs):
+        # Update percentage of square feet on all units in this property
+        if self.square_feet != 0:
+            subunits = self.unit_set.all()
+
+            for u in subunits:
+                if u.calculate_tax_and_ins is True:
+                    u.save()
+
+        super(Property, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.full_address
-    
+
     def get_absolute_url(self):
         return reverse('properties:property-detail', kwargs={'pk': self.pk})
-    
-    
+
     class Meta:
         verbose_name_plural = 'Properties'

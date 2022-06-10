@@ -45,6 +45,10 @@
         @apply w-full border-gray-400 rounded transition duration-150 focus:outline-none focus:border-indigo-600;
     }
 
+    input[type="checkbox"] {
+        @apply w-5 h-5 text-indigo-600 rounded-sm focus:ring-indigo-400 transition duration-150;
+    }
+
     .btn {
         @apply px-5 py-3 flex items-center gap-2 rounded transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2;
     }

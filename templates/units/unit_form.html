@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2 class="mb-6 text-3xl">
-        {% if property.id %}
+        {% if unit.id %}
             Edit Unit
         {% else %}
             Add New Unit
@@ -89,6 +89,51 @@
                 {% endif %}
             </div>
         </div>
+        <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
+            <div class="col-span-2 space-y-1">
+                <label for="{{ form.unit_taxes.id_for_label }}">{{ form.unit_taxes.label }}</label>
+                {{ form.unit_taxes }}
+                {% if form.unit_taxes.errors %}
+                    {% for error in form.unit_taxes.errors %}
+                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+                {% if form.unit_taxes.help_text %}
+                    <p class="text-sm text-gray-500">{{ form.unit_taxes.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            <div class="col-span-2 space-y-1">
+                <label for="{{ form.unit_insurance.id_for_label }}">{{ form.unit_insurance.label }}</label>
+                {{ form.unit_insurance }}
+                {% if form.unit_insurance.errors %}
+                    {% for error in form.unit_insurance.errors %}
+                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
+                {% if form.unit_insurance.help_text %}
+                    <p class="text-sm text-gray-500">{{ form.unit_insurance.help_text|safe }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="">
+            <div class="mb-2 flex items-center">
+                {{ form.calculate_tax_and_ins }}
+                <label
+                    for="{{ form.calculate_tax_and_ins.id_for_label }}"
+                    class="pl-2"
+                >
+                    {{ form.calculate_tax_and_ins.label }}
+                </label>
+                {% if form.calculate_tax_and_ins.help_text %}
+                    <p class="pl-5 pb-[1px] text-sm text-gray-500 self-end">{{ form.calculate_tax_and_ins.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% if form.calculate_tax_and_ins.errors %}
+                {% for error in form.calculate_tax_and_ins.errors %}
+                    <p class="my-1 px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div class="pt-6 flex items-center gap-4">
             <a
                 href="{% url 'units:unit-list' %}"
@@ -110,4 +155,28 @@
             </button>
         </div>
     </form>
+
+    <script>
+        const calculateTaxesCheckbox = document.getElementById("{{ form.calculate_tax_and_ins.id_for_label }}");
+        const taxesInput = document.getElementById("{{ form.unit_taxes.id_for_label }}");
+        const insuranceInput = document.getElementById("{{ form.unit_insurance.id_for_label }}");
+
+        const setInputState = () => {
+            if (calculateTaxesCheckbox.checked) {
+                taxesInput.readOnly = true;
+                taxesInput.classList.add("bg-gray-200");
+                insuranceInput.classList.add("bg-gray-200");
+            } else {
+                taxesInput.readOnly = false;
+                taxesInput.classList.remove("bg-gray-200");
+                insuranceInput.classList.remove("bg-gray-200");
+            }
+        };
+
+        calculateTaxesCheckbox.addEventListener("change", () => {
+            setInputState();
+        });
+
+        setInputState();
+    </script>
 {% endblock content %}
