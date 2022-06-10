@@ -136,6 +136,10 @@ INTERNAL_IPS = [
 ]
 
 
+# Node/NPM path
+NPM_BIN_PATH = env('NPM_PATH')
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
