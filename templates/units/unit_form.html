@@ -3,9 +3,9 @@
 {% block content %}
     <h2 class="mb-6 text-3xl">
         {% if property.id %}
-            Edit Property
+            Edit Unit
         {% else %}
-            Add New Property
+            Add New Unit
         {% endif %}
     </h2>
     <form method="post" class="max-w-6xl space-y-6" novalidate>
@@ -89,10 +89,10 @@
                 {% endif %}
             </div>
         </div>
-        <div class="pt-6 flex items-center gap-6">
+        <div class="pt-6 flex items-center gap-4">
             <a
                 href="{% url 'units:unit-list' %}"
-                class="flex items-center gap-2 text-gray-500"
+                class="btn btn-cancel"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
@@ -101,7 +101,7 @@
             </a>
             <button
                 type="submit"
-                class="px-4 py-3 flex items-center gap-2 text-white bg-indigo-600 rounded hover:bg-indigo-700 transition duration-150"
+                class="btn btn-primary"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
