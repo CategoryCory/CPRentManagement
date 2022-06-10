@@ -13,8 +13,8 @@ class Unit(models.Model):
         (AVAILABLE, 'Available'),
     )
 
-    addr_line_1 = models.TextField(max_length=100, verbose_name='Address Line 1')
-    addr_line_2 = models.TextField(max_length=100, blank=True, verbose_name='Address Line 2')
+    addr_line_1 = models.CharField(max_length=100, verbose_name='Address Line 1')
+    addr_line_2 = models.CharField(max_length=100, blank=True, verbose_name='Address Line 2')
     rent = models.DecimalField(max_digits=12, decimal_places=2, default=0.0)
     square_feet = models.IntegerField(default=0)
     percentage_of_property = models.FloatField(default=0.0)
@@ -34,4 +34,4 @@ class Unit(models.Model):
         return self.addr_line_1
     
     def get_absolute_url(self):
-        return reverse("model_detail", kwargs={"pk": self.pk})
+        return reverse('units:unit-detail', kwargs={'pk': self.pk})

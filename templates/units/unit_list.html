@@ -8,7 +8,7 @@
             <h2 class="text-3xl">Units</h2>
             {% if perms.units.add_unit %}
                 <a
-                    href="#"
+                    href="{% url 'units:unit-add' %}"
                     class="px-3 py-2 flex items-center gap-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-150"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -75,7 +75,7 @@
                                             {% if perms.units.change_unit %}
                                                 <td class="relative whitespace-nowrap">
                                                     <a
-                                                        href="#"
+                                                        href="{% url 'units:unit-edit' unit.pk %}"
                                                         class="p-2 inline-flex text-gray-500 rounded-full hover:bg-indigo-100
                                                             hover:text-indigo-700 transition duration-150"
                                                     >

@@ -41,6 +41,12 @@ module.exports = {
          */
         // '../../**/*.py'
     ],
+    safelist: [
+        'message-container-success',
+        'message-container-info',
+        'message-container-warning',
+        'message-container-error',
+    ],
     theme: {
         extend: {},
     },
