@@ -45,10 +45,13 @@ INSTALLED_APPS = [
     'form_helpers',
     'accounts',
     'pages',
+    'charge_accounts',
     'companies',
     'properties',
     'units',
     'tenants',
+    'charges',
+    'payments',
 ]
 
 MIDDLEWARE = [

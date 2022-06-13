@@ -67,7 +67,7 @@
     }
 
     .message-container {
-        @apply mb-6 px-3 py-2 flex justify-between items-center rounded border-l-[3px];
+        @apply max-w-5xl mb-6 px-3 py-2 flex justify-between items-center rounded border-l-[3px];
     }
 
     .message-container-success {

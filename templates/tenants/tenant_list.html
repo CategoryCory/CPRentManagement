@@ -2,7 +2,6 @@
 
 {% block content %}
     <div class="max-w-5xl">
-        {% include 'partials/_alerts.html' %}
         <div class="flex justify-between items-center">
             <h2 class="text-3xl">Tenants</h2>
             {% if perms.tenants.add_tenant %}
