@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Local
     'theme',
+    'form_helpers',
     'accounts',
     'pages',
     'companies',

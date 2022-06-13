@@ -1,0 +1,12 @@
+<div class="col-span-{{ num_cols }} space-y-1">
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    {{ field }}
+    {% if field.errors %}
+        {% for error in field.errors %}
+            <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+    {% if field.help_text %}
+        <p class="text-sm text-gray-500">{{ field.help_text|safe }}</p>
+    {% endif %}
+</div>
