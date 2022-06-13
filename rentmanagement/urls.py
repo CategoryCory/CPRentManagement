@@ -8,6 +8,7 @@ urlpatterns = [
     path('companies/', include('companies.urls')),
     path('properties/', include('properties.urls')),
     path('units/', include('units.urls')),
+    path('tenants/', include('tenants.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     path('__reload__/', include('django_browser_reload.urls')),

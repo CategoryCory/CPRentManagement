@@ -1,24 +1,23 @@
 {% extends 'base.html' %}
-{% load humanize %}
 
 {% block content %}
     <div class="max-w-5xl">
         {% include 'partials/_alerts.html' %}
         <div class="flex justify-between items-center">
-            <h2 class="text-3xl">Properties</h2>
-            {% if perms.properties.add_property %}
-                <a 
-                    href="{% url 'properties:property-add' %}"
+            <h2 class="text-3xl">Tenants</h2>
+            {% if perms.tenants.add_tenant %}
+                <a
+                    href="{% url 'tenants:tenant-add' %}"
                     class="px-3 py-2 flex items-center gap-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition duration-150"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
-                    Add property
+                    Add tenant
                 </a>
             {% endif %}
         </div>
-        {% if property_list %}
+        {% if tenant_list %}
             <div class="mt-8 flex flex-col">
                 <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -30,27 +29,33 @@
                                             scope="col"
                                             class="py-3 pl-4 pr-3 text-left text-xs uppercase tracking-wide text-gray-500 sm:pl-6"
                                         >
-                                            Property address
+                                            Contact name
                                         </th>
                                         <th
                                             scope="col"
                                             class="px-3 py-3 text-left text-xs uppercase tracking-wide text-gray-500"
                                         >
-                                            Property type
+                                            Company name
                                         </th>
                                         <th
                                             scope="col"
                                             class="px-3 py-3 text-left text-xs uppercase tracking-wide text-gray-500"
                                         >
-                                            Square feet
+                                            Move in date
                                         </th>
                                         <th
                                             scope="col"
                                             class="px-3 py-3 text-left text-xs uppercase tracking-wide text-gray-500"
                                         >
-                                            Insurance
+                                            Move out date
                                         </th>
-                                        {% if perms.companies.change_company %}
+                                        <th
+                                            scope="col"
+                                            class="px-3 py-3 text-left text-xs uppercase tracking-wide text-gray-500"
+                                        >
+                                            Unit
+                                        </th>
+                                        {% if perms.tenants.change_tenant %}
                                             <th scope="col" class="relative py-3 pl-3 pr-4 sm:pr-6">
                                                 <span class="sr-only">Edit</span>
                                             </th>
@@ -58,31 +63,34 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-gray-200 bg-white">
-                                    {% for property in property_list %}
+                                    {% for tenant in tenant_list %}
                                         <tr>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-900 sm:pl-6">
-                                                {{ property.full_address }}
+                                                {{ tenant.contact_person }}
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {{ property.get_property_type_display }}
+                                                {{ tenant.company_name }}
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                {{ property.square_feet }}
+                                                {{ tenant.move_in_date }}
                                             </td>
                                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                ${{ property.insurance|floatformat:'2'|intcomma }}
+                                                {{ tenant.move_out_date }}
+                                            </td>
+                                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                {{ tenant.unit }}
                                             </td>
                                             {% if perms.properties.change_property %}
                                                 <td class="relative whitespace-nowrap">
-                                                    <a 
-                                                        href="{% url 'properties:property-edit' property.pk %}"
-                                                        class="p-2 inline-flex text-gray-500 rounded-full hover:bg-indigo-100 
+                                                    <a
+                                                        href="{% url 'tenants:tenant-edit' tenant.pk %}"
+                                                        class="p-2 inline-flex text-gray-500 rounded-full hover:bg-indigo-100
                                                             hover:text-indigo-700 transition duration-150"
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                         </svg>
-                                                        <span class="sr-only">Edit {{ property.full_address }}</span>
+                                                        <span class="sr-only">Edit {{ tenant.contact_person }}</span>
                                                     </a>
                                                 </td>
                                             {% endif %}
@@ -95,7 +103,7 @@
                 </div>
             </div>
         {% else %}
-            <p>There are no properties listed yet.</p>
+            <p>There are no tenants listed yet.</p>
         {% endif %}
     </div>
 {% endblock content %}
