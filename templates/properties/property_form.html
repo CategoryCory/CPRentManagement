@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load form_field_tags %}
+
 {% block content %}
     <h2 class="mb-6 text-3xl">
         {% if property.id %}
@@ -12,192 +14,30 @@
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            <div class="col-span-3 space-y-1">
-                <label for="{{ form.addr_line_1.id_for_label }}">{{ form.addr_line_1.label }}</label>
-                {{ form.addr_line_1 }}
-                {% if form.addr_line_1.errors %}
-                    {% for error in form.addr_line_1.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.addr_line_1.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.addr_line_1.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            <div class="col-span-3 space-y-1">
-                <label for="{{ form.addr_line_2.id_for_label }}">{{ form.addr_line_2.label }}</label>
-                {{ form.addr_line_2 }}
-                {% if form.addr_line_2.errors %}
-                    {% for error in form.addr_line_2.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.addr_line_2.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.addr_line_2.help_text|safe }}</p>
-                {% endif %}
-            </div>
+            {% form_input form.addr_line_1 3 %}
+            {% form_input form.addr_line_2 3 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.addr_city.id_for_label }}">{{ form.addr_city.label }}</label>
-                {{ form.addr_city }}
-                {% if form.addr_city.errors %}
-                    {% for error in form.addr_city.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.addr_city.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.addr_city.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.addr_state.id_for_label }}">{{ form.addr_state.label }}</label>
-                {{ form.addr_state }}
-                {% if form.addr_state.errors %}
-                    {% for error in form.addr_state.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.addr_state.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.addr_state.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.addr_zip.id_for_label }}">{{ form.addr_zip.label }}</label>
-                {{ form.addr_zip }}
-                {% if form.addr_zip.errors %}
-                    {% for error in form.addr_zip.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.addr_zip.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.addr_zip.help_text|safe }}</p>
-                {% endif %}
-            </div>
+            {% form_input form.addr_city 2 %}
+            {% form_input form.addr_state 2 %}
+            {% form_input form.addr_zip 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            <div class="col-span-4 space-y-1">
-                <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
-                {{ form.description }}
-                {% if form.description.errors %}
-                    {% for error in form.description.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.description.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.description.help_text|safe }}</p>
-                {% endif %}
-            </div>
+            {% form_input form.description 4 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.property_type.id_for_label }}">{{ form.property_type.label }}</label>
-                {{ form.property_type }}
-                {% if form.property_type.errors %}
-                    {% for error in form.property_type.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.property_type.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.property_type.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.company.id_for_label }}">{{ form.company.label }}</label>
-                {{ form.company }}
-                {% if form.company.errors %}
-                    {% for error in form.company.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.company.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.company.help_text|safe }}</p>
-                {% endif %}
-            </div>
+            {% form_input form.property_type 2 %}
+            {% form_input form.company 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.square_feet.id_for_label }}">{{ form.square_feet.label }}</label>
-                {{ form.square_feet }}
-                {% if form.square_feet.errors %}
-                    {% for error in form.square_feet.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.square_feet.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.square_feet.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.key_number.id_for_label }}">{{ form.key_number.label }}</label>
-                {{ form.key_number }}
-                {% if form.key_number.errors %}
-                    {% for error in form.key_number.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.key_number.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.key_number.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.date_built.id_for_label }}">{{ form.date_built.label }}</label>
-                {{ form.date_built }}
-                {% if form.date_built.errors %}
-                    {% for error in form.date_built.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.date_built.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.date_built.help_text|safe }}</p>
-                {% endif %}
-            </div>
+            {% form_input form.square_feet 2 %}
+            {% form_input form.key_number 2 %}
+            {% form_input form.date_built 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.taxes.id_for_label }}">{{ form.taxes.label }}</label>
-                {{ form.taxes }}
-                {% if form.taxes.errors %}
-                    {% for error in form.taxes.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.taxes.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.taxes.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            <div class="col-span-2 space-y-1">
-                <label for="{{ form.insurance.id_for_label }}">{{ form.insurance.label }}</label>
-                {{ form.insurance }}
-                {% if form.insurance.errors %}
-                    {% for error in form.insurance.errors %}
-                        <p class="px-2 py-1 bg-red-100 text-red-600 rounded">{{ error }}</p>
-                    {% endfor %}
-                {% endif %}
-                {% if form.insurance.help_text %}
-                    <p class="text-sm text-gray-500">{{ form.insurance.help_text|safe }}</p>
-                {% endif %}
-            </div>
+            {% form_input form.taxes 2 %}
+            {% form_input form.insurance 2 %}
         </div>
-        <div class="pt-6 flex items-center gap-4">
-            <a 
-                href="{% url 'properties:property-list' %}"
-                class="btn btn-cancel"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 17l-5-5m0 0l5-5m-5 5h12" />
-                </svg>
-                Cancel
-            </a>
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-                Save
-            </button>
-        </div>
+        {% form_button_row 'properties:property-list' %}
     </form>
 {% endblock content %}

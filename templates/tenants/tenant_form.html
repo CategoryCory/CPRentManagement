@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load form_field %}
+{% load form_field_tags %}
 
 {% block content %}
     <h2 class="mb-6 text-3xl">
@@ -14,46 +14,46 @@
         {% csrf_token %}
         {% for hidden in form.hidden_fields %}{{ hidden }}{% endfor %}
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.contact_person 4 %}
-            {% form_field_template form.unit 2 %}
+            {% form_input form.contact_person 4 %}
+            {% form_input form.unit 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.phone 2 %}
-            {% form_field_template form.work_phone 2 %}
-            {% form_field_template form.cell_phone 2 %}
+            {% form_input form.phone 2 %}
+            {% form_input form.work_phone 2 %}
+            {% form_input form.cell_phone 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.fax 2 %}
-            {% form_field_template form.email 2 %}
+            {% form_input form.fax 2 %}
+            {% form_input form.email 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.date_of_birth 2 %}
-            {% form_field_template form.ssn 2 %}
+            {% form_input form.date_of_birth 2 %}
+            {% form_input form.ssn 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.company_name 2 %}
-            {% form_field_template form.alternate_company_1 2 %}
-            {% form_field_template form.alternate_company_2 2 %}
+            {% form_input form.company_name 2 %}
+            {% form_input form.alternate_company_1 2 %}
+            {% form_input form.alternate_company_2 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.addr_line_1 3 %}
-            {% form_field_template form.addr_line_2 3 %}
+            {% form_input form.addr_line_1 3 %}
+            {% form_input form.addr_line_2 3 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.addr_city 2 %}
-            {% form_field_template form.addr_state 2 %}
-            {% form_field_template form.addr_zip 2 %}
+            {% form_input form.addr_city 2 %}
+            {% form_input form.addr_state 2 %}
+            {% form_input form.addr_zip 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.move_in_date 2 %}
-            {% form_field_template form.move_out_date 2 %}
+            {% form_input form.move_in_date 2 %}
+            {% form_input form.move_out_date 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.lease_begin_date 2 %}
-            {% form_field_template form.lease_end_date 2 %}
+            {% form_input form.lease_begin_date 2 %}
+            {% form_input form.lease_end_date 2 %}
         </div>
         <div class="space-y-6 lg:space-y-0 lg:grid lg:grid-cols-6 lg:gap-6">
-            {% form_field_template form.notes 4 %}
+            {% form_input form.notes 4 %}
         </div>
         {% form_button_row 'tenants:tenant-list' %}
     </form>
