@@ -24,6 +24,5 @@ class Company(models.Model):
     def get_absolute_url(self):
         return reverse('companies:company-detail', kwargs={"pk": self.pk})
     
-
     class Meta:
         verbose_name_plural = 'Companies'
